@@ -1,0 +1,1 @@
+import ReactMarkdown from "react-markdown"; export default function MarkdownCard({title,text}:{title:string;text:string}){return <section className="panel markdown"><h3>{title}</h3><ReactMarkdown>{text}</ReactMarkdown></section>}

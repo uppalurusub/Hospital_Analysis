@@ -1,0 +1,17 @@
+uv
+fastapi
+uvicorn
+matplotlib
+seaborn
+plotly
+streamlit
+requests
+pandas
+scipy
+scikit-learn
+ipykernel
+nbformat
+notebook 
+jupyterlab
+mlflow
+loguru

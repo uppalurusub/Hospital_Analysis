@@ -1,0 +1,2 @@
+import { Navigate,Route,Routes } from "react-router-dom"; import Sidebar from "./components/Sidebar"; import AnalyticsPage from "./pages/AnalyticsPage"; import { defaultModule } from "./config/modules";
+export default function App(){return <div className="app"><Sidebar/><Routes><Route path="/" element={<Navigate to={`/analytics/${defaultModule.id}`} replace/>}/><Route path="/analytics/:moduleId" element={<AnalyticsPage/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Routes></div>}

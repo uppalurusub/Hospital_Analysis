@@ -1,0 +1,2 @@
+import { fmt,titleCase } from "../utils/formatters";
+export default function DataTable({title,rows}:{title:string;rows:any[]}){if(!rows.length)return null; const cols=Array.from(new Set(rows.flatMap(r=>Object.keys(r)))); return <section className="panel"><h3>{titleCase(title)}</h3><div className="table-wrap"><table><thead><tr>{cols.map(c=><th key={c}>{titleCase(c)}</th>)}</tr></thead><tbody>{rows.map((r,i)=><tr key={i}>{cols.map(c=><td key={c}>{typeof r[c]==="object"?JSON.stringify(r[c]):fmt(r[c],c)}</td>)}</tr>)}</tbody></table></div></section>}

@@ -1,0 +1,5 @@
+export const titleCase=(v:string)=>v.replace(/_/g," ").replace(/-/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+export const fmt=(v:unknown,key="")=>{if(v==null)return "—"; if(typeof v==="boolean")return v?"Yes":"No"; if(typeof v==="number"){const k=key.toLowerCase(); if(k.includes("rate")||k.includes("percent")||k.includes("percentage")) return `${v.toLocaleString(undefined,{maximumFractionDigits:2})}%`; if(k.includes("cost")||k.includes("revenue")||k.includes("amount")) return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(v); return v.toLocaleString(undefined,{maximumFractionDigits:2});} return String(v);}
+export const isPrimitive=(v:unknown)=>v==null||["string","number","boolean"].includes(typeof v);
+export const numericEntries=(o:Record<string,unknown>)=>Object.entries(o).filter(([,v])=>typeof v==="number") as [string,number][];
+export const unwrap=(x:any)=>x?.data ?? x;

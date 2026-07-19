@@ -1,0 +1,2 @@
+import { Activity } from "lucide-react"; import { fmt,titleCase } from "../utils/formatters";
+export default function KpiCard({name,value}:{name:string;value:unknown}){return <article className="kpi"><div className="kpi-icon"><Activity size={18}/></div><div><span>{titleCase(name)}</span><strong>{fmt(value,name)}</strong></div></article>}
