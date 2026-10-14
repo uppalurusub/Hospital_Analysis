@@ -4,4 +4,17 @@ const COLORS=["#2563eb","#06b6d4","#10b981","#f59e0b","#ef4444","#8b5cf6","#ec48
 export default function ChartView({title,data}:{title:string;data:any[]}){
  if(!data.length)return null; const keys=Object.keys(data[0]); const nameKey=keys.find(k=>typeof data[0][k]==="string")??keys[0]; const valueKey=keys.find(k=>k!==nameKey&&typeof data[0][k]==="number");
  if(!valueKey)return null; const pie=data.length<=6;
- return <section className="panel"><h3>{titleCase(title)}</h3><div className="chart">{pie?<ResponsiveContainer width="100%" height={300}><PieChart><Pie data={data} dataKey={valueKey} nameKey={nameKey} outerRadius={105} label>{data.map((_,i)=><Cell key={i} fill={COLORS[i%COLORS.length]}/>)}</Pie><Tooltip/></PieChart></ResponsiveContainer>:<ResponsiveContainer width="100%" height={320}><BarChart data={data} layout={data.length>8?"vertical":"horizontal"} margin={{left:data.length>8?50:10,right:20}}><CartesianGrid strokeDasharray="3 3"/><XAxis type={data.length>8?"number":"category"} dataKey={data.length>8?undefined:nameKey}/><YAxis type={data.length>8?"category":"number"} dataKey={data.length>8?nameKey:undefined} width={100}/><Tooltip/><Bar dataKey={valueKey} fill="#2563eb" radius={[6,6,0,0]}/></BarChart></ResponsiveContainer>}</div></section>}
+ return <section className="panel"><h3>{titleCase(title)}</h3>
+  <div className="chart">{pie?
+  <ResponsiveContainer width="100%" height={300}>
+   <PieChart>
+       <Pie data={data} dataKey={valueKey} nameKey={nameKey} outerRadius={105} label>{data.map((_,i)=><Cell key={i} fill={COLORS[i%COLORS.length]}/>)}</Pie>
+       <Tooltip/>
+   </PieChart>
+  </ResponsiveContainer>:
+  <ResponsiveContainer width="100%" height={320}>
+   <BarChart data={data} layout={data.length>8?"vertical":"horizontal"} margin={{left:data.length>8?50:10,right:20}}><CartesianGrid strokeDasharray="3 3"/><XAxis type={data.length>8?"number":"category"} dataKey={data.length>8?undefined:nameKey}/><YAxis type={data.length>8?"category":"number"} dataKey={data.length>8?nameKey:undefined} width={100}/><Tooltip/>
+     <Bar dataKey={valueKey} fill="#2563eb" radius={[6,6,0,0]}/>
+    </BarChart>
+  </ResponsiveContainer>}
+  </div></section>}
